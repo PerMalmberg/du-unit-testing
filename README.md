@@ -1,2 +1,2 @@
-# du-busted-mocks
-Busted mocks for Dual Universe API mocks.
+# du-unit-testing
+Files to help with unit testing when writing Lua for Dual Universe
