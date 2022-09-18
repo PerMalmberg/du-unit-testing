@@ -1,0 +1,24 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with: 
+        submodules: true
+    - name: Install tools
+      run: |
+        set -e -o pipefail
+        apt install npm sudo apt lua5.3 liblua5.3-dev luarocks -y
+        # Install rocks system wide as in a local installation busted can't find luacov
+        luarocks install busted
+        luarocks install luacov
+        luarocks install luacov-html
+        # Install globally to keep node_modules away from project directory
+        sudo npm i -g @wolfe-labs/du-luac
+    - name: Test
+      run: |
+        make test
