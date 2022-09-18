@@ -19,6 +19,6 @@ jobs:
         sudo luarocks install luacov-html
         # Install globally to keep node_modules away from project directory
         sudo npm i -g @wolfe-labs/du-luac
-    - name: Test
+    - name: Run CI Tests
       run: |
-        make test
+        make ci

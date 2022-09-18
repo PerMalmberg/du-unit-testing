@@ -14,5 +14,7 @@ clear_screen:
 lua_path:
 	@echo "$(LUA_PATH)"
 
-test: clear_screen
+ci: 
 	@LUA_PATH="$(LUA_PATH)" busted .
+
+test: clear_screen ci
