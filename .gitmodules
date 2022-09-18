@@ -1,0 +1,6 @@
+[submodule "external/du-luac"]
+	path = external/du-luac
+	url = git@github.com:wolfe-labs/DU-LuaC.git
+[submodule "external/du-lua-examples"]
+	path = external/du-lua-examples
+	url = git@github.com:dual-universe/lua-examples.git
