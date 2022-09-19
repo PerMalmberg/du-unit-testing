@@ -1,6 +1,6 @@
 # du-unit-testing
 
-The files in this repository sets up a runtime environment to be used when running unit tests for code targeting Dual Universe suing the [Busted](https://lunarmodules.github.io/busted) unit testing framework
+The files in this repository sets up a runtime environment to be used when running unit tests for code targeting Dual Universe using the [Busted](https://lunarmodules.github.io/busted) unit testing framework
 
 ## Instructions
 
