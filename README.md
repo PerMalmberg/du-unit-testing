@@ -17,4 +17,4 @@ Next, setup your LUA_PATH to include the following folders from the root of this
 * external/du-lua-examples/api-mockup/?.lua
 * external/du-luac/lua/?.lua
 
-Finally, `require("setup_mocks")` in your code in which you need the environment available. As Busted runs all test files in isolation, you can likely do that at the top of your unit test file.
+Finally, `local env = require("environment")` in your code in which you need the environment available. As Busted runs all test files in isolation, you can likely do that at the top of your unit test file. Then do `env.Prepare()` to setup the environment. Each call to `Prepare` replaces the environment with a fresh copy of the DU-related globals.
