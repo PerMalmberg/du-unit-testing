@@ -76,6 +76,32 @@ insulate("DU-LuaC test, part 2", function()
             mock.revert(mockAdder)
             system:triggerEvent("anEvent", 5, 6)
             assert.are.equal(21, adder:Sum())
+
+            -- Ensure adding something that can't be called results in an error
+            assert.has_error(function ()
+                system:onEvent("anEvent", "not callable")
+            end, "Event handler must be a function!")
         end)
+
+        it("supports coroutines", function()
+            local count = 0
+
+            local c = coroutine.wrap(function ()
+                for i = 1, 10, 1 do
+                    count = i
+                    coroutine.yield()
+                end
+            end)
+
+            system:onEvent("coEvent", c)
+
+            for i=1, 10, 1 do
+                system:triggerEvent("coEvent")
+            end
+
+            assert.are.equal(10, count)
+
+        end)
+
     end)
 end)
