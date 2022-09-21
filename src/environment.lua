@@ -1,4 +1,4 @@
---[[ Load DU classes into global namespace ]]
+local posixTime = require("posix.time") -- from luaposix
 
 local TestEnvironment = {}
 TestEnvironment.__index = TestEnvironment
@@ -10,7 +10,11 @@ end
 
 TestEnvironment.Prepare = function()
     -- There is a cross reference between DUSystem and Event if getTime isn't defined.
-    getTime = os.time
+
+    getTime = function()
+        local t = posixTime.clock_gettime(posixTime.CLOCK_MONOTONIC)
+        return t.tv_sec + t.tv_nsec / 1000000000
+    end
     Event = require("api-mockup/utils/event")
 
     require("api-mockup/system") -- Can't require("system") as that gives us a Lua-provided file.
