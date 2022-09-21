@@ -11,6 +11,7 @@ jobs:
         submodules: true
     - name: Install tools
       run: |
+        git config --global url."https://github".insteadOf git://github
         ./install_tools.sh
     - name: Run CI Tests
       run: |
