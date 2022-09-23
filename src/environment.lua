@@ -1,6 +1,8 @@
 local posixTime = require("posix.time") -- from luaposix
 local assert = require("luassert")
 
+traceback = debug.traceback
+
 local TestEnvironment = {}
 TestEnvironment.__index = TestEnvironment
 
@@ -24,9 +26,10 @@ TestEnvironment.Prepare = function()
     DUSystem.getArkTime = getTime
     DUSystem.getUtcOffset = function () return 0 end
     DUSystem.getLocale = function() return "en-US" end
+    DUSystem.print = print
     _G.system = DUSystem
 
-    require("controlunit")
+    require("api-mockup/controlunit")
     local unit = ControlUnit()
     _G.unit = unit
 
@@ -40,16 +43,5 @@ TestEnvironment.Prepare = function()
     library.addEventHandlers(library)
     library.addEventHandlers(unit)
 end
-
----Stubs all function in the object
----@param o table object to stub
-function TestEnvironment.StubObject(o)
-    for key, _ in pairs(o) do
-        if type(o[key]) == "function" then
-            assert.stub(o, key)
-        end
-    end
-end
-
 
 return TestEnvironment
