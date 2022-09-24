@@ -8,13 +8,10 @@ LUA_PATH := $(LUA_PATH);$(PWD)/external/du-luac/lua/?.lua
 
 all: test
 
-clear_screen:
-	clear
-
 lua_path:
 	@echo "$(LUA_PATH)"
 
-ci: 
+ci:
 	@LUA_PATH="$(LUA_PATH)" busted .
 
-test: clear_screen ci
+test: ci
