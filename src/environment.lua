@@ -1,5 +1,4 @@
 local posixTime = require("posix.time") -- from luaposix
-local assert = require("luassert")
 
 traceback = debug.traceback
 
@@ -24,7 +23,7 @@ TestEnvironment.Prepare = function()
 
     DUSystem.getUtcTime = getTime
     DUSystem.getArkTime = getTime
-    DUSystem.getUtcOffset = function () return 0 end
+    DUSystem.getUtcOffset = function() return 0 end
     DUSystem.getLocale = function() return "en-US" end
     DUSystem.print = print
     _G.system = DUSystem
