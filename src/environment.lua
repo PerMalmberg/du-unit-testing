@@ -1,3 +1,4 @@
+local CoreMock = require("mocks/CoreMock")
 local posixTime = require("posix.time") -- from luaposix
 
 traceback = debug.traceback
@@ -41,6 +42,12 @@ TestEnvironment.Prepare = function()
     library.addEventHandlers(system)
     library.addEventHandlers(library)
     library.addEventHandlers(unit)
+
+    -- Setup convencience function from DU-LuaC
+    library.getCoreUnit = function()
+        return CoreMock.Instance()
+    end
+
 end
 
 return TestEnvironment
