@@ -4,15 +4,18 @@
 ---@class CoreMock
 ---@field Instance fun():CoreMock Returns the core instance
 ---@field getCurrentPlanetId fun():integer Returns the id of the closest body, or 0 when far enough in space
+---@field getWorldGravity fun():number[] Returns the world gravity vector
+---@field SetWorldGravity fun(gravity:Vec3) [For Unit testing]Returns the world gravity vector
+
 local CoreMock = {}
 CoreMock.__index = CoreMock
 
 local singelton = nil
 
 local CoreVars = {
-    worldPos = { -8.00, -8.00, -126303.00 }, -- Alioth center
     currentPlanetId = 2, -- Alioth
-    constructWorldOrientationForward = { 0, 1, 0 }
+    constructWorldOrientationForward = { 0, 1, 0 },
+    worldGravity = { 0, 0, 1 },
 }
 
 function CoreMock.Instance()
@@ -32,6 +35,14 @@ function CoreMock.Instance()
 
     function s.setCurrentPlanetId(id)
         CoreVars.currentPlanetId = id
+    end
+
+    function s.getWorldGravity()
+        return CoreVars.worldGravity
+    end
+
+    function s.SetWorldGravity(gravity)
+        CoreVars.worldGravity = { gravity:unpack() }
     end
 
     singelton = setmetatable(s, CoreMock)

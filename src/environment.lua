@@ -1,4 +1,5 @@
 local CoreMock = require("mocks/CoreMock")
+local ConstructMock = require("mocks/ConstructMock")
 local posixTime = require("posix.time") -- from luaposix
 
 traceback = debug.traceback
@@ -30,8 +31,9 @@ TestEnvironment.Prepare = function()
     _G.system = DUSystem
 
     require("api-mockup/controlunit")
-    local unit = ControlUnit()
-    _G.unit = unit
+    _G.unit = ControlUnit()
+
+    _G.construct = ConstructMock.Instance()
 
     require("api-mockup/library")
     _G.library = DULibrary
@@ -47,7 +49,6 @@ TestEnvironment.Prepare = function()
     library.getCoreUnit = function()
         return CoreMock.Instance()
     end
-
 end
 
 return TestEnvironment
