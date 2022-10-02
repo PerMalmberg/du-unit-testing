@@ -21,14 +21,14 @@ TestEnvironment.Prepare = function()
     end
     Event = require("api-mockup/utils/event")
 
-    require("api-mockup/system") -- Can't require("system") as that gives us a Lua-provided file.
-
-    DUSystem.getUtcTime = getTime
-    DUSystem.getArkTime = getTime
-    DUSystem.getUtcOffset = function() return 0 end
-    DUSystem.getLocale = function() return "en-US" end
-    DUSystem.print = print
-    _G.system = DUSystem
+    --require("api-mockup/system") -- Can't require("system") as that gives us a Lua-provided file.
+    _G.system = {
+        getUtcTime = getTime,
+        getArkTime = getTime,
+        getUtcOffset = function() return 0 end,
+        getLocale = function() return "en-US" end,
+        print = print,
+    }
 
     require("api-mockup/controlunit")
     _G.unit = ControlUnit()
