@@ -42,7 +42,7 @@ function CoreMock.Instance()
     end
 
     function s.SetWorldGravity(gravity)
-        CoreVars.worldGravity = { gravity:unpack() }
+        CoreVars.worldGravity = { gravity:Unpack() }
     end
 
     singelton = setmetatable(s, CoreMock)
