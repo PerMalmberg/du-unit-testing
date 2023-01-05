@@ -1,19 +1,20 @@
 --[[
-    Core mock.
+    Construct mock.
 ]]
 ---@class ConstructMock
----@field Instance fun():ConstructMock Returns the core instance
----@field getCurrentPlanetId fun():integer Returns the id of the closest body, or 0 when far enough in space
----@field getWorldGravity fun():number[] Returns the world gravity vector
----@field SetWorldGravity fun(gravity:Vec3) [For Unit testing]Returns the world gravity vector
+---@field Instance fun():ConstructMock
+
+
 
 local ConstructMock = {}
 ConstructMock.__index = ConstructMock
 
 local singelton
 
-local ConstructVars = {
-    worldPosition = { -8.00, -8.00, -126303.00 }, -- Alioth center
+local aliothCenter = { -8.00, -8.00, -126303.00 }
+
+local constructVars = {
+    worldPosition = aliothCenter,
 }
 
 function ConstructMock.Instance()
@@ -24,7 +25,16 @@ function ConstructMock.Instance()
     local s = {}
 
     function s.getWorldPosition()
-        return ConstructVars.worldPosition
+        return constructVars.worldPosition
+    end
+
+    ---@param coord Vec3
+    function s.SetContructPostion(coord)
+        constructVars.worldPosition = { coord:Unpack() }
+    end
+
+    function s.ResetContructPostion()
+        constructVars.worldPosition = aliothCenter
     end
 
     singelton = setmetatable(s, ConstructMock)

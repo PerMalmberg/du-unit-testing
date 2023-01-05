@@ -28,6 +28,7 @@ TestEnvironment.Prepare = function()
         getUtcOffset = function() return 0 end,
         getLocale = function() return "en-US" end,
         print = print,
+        setWaypoint = function() end
     }
 
     require("api-mockup/controlunit")
