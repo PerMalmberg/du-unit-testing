@@ -1,5 +1,6 @@
 set -e -o pipefail
 
+sudo apt update
 sudo apt upgrade
 sudo apt install npm sudo apt lua5.3 liblua5.3-dev libev-dev luarocks -y
 # Install rocks system wide as in a local installation busted can't find luacov
