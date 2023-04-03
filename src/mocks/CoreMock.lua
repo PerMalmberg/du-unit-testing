@@ -5,6 +5,7 @@
 ---@field Instance fun():CoreMock Returns the core instance
 ---@field getCurrentPlanetId fun():integer Returns the id of the closest body, or 0 when far enough in space
 ---@field getWorldGravity fun():number[] Returns the world gravity vector
+---@field getWorldVertical fun():{number, number, number}
 ---@field SetWorldGravity fun(gravity:Vec3) [For Unit testing]Returns the world gravity vector
 
 local CoreMock = {}
@@ -16,6 +17,7 @@ local CoreVars = {
     currentPlanetId = 2, -- Alioth
     constructWorldOrientationForward = { 0, 1, 0 },
     worldGravity = { 0, 0, 1 },
+    worldVertical = { 0, 0, 1 }
 }
 
 function CoreMock.Instance()
@@ -39,6 +41,10 @@ function CoreMock.Instance()
 
     function s.getWorldGravity()
         return CoreVars.worldGravity
+    end
+
+    function s.getWorldVertical()
+        return CoreVars.worldVertical
     end
 
     function s.SetWorldGravity(gravity)
