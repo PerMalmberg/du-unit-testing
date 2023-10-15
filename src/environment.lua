@@ -28,7 +28,10 @@ TestEnvironment.Prepare = function()
         getUtcOffset = function() return 0 end,
         getLocale = function() return "en-US" end,
         print = print,
-        setWaypoint = function() end
+        setWaypoint = function() end,
+        getThrottleInputFromMouseWheel = function()
+            return 0
+        end
     }
 
     require("api-mockup/controlunit")
