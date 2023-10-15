@@ -36,6 +36,9 @@ TestEnvironment.Prepare = function()
 
     require("api-mockup/controlunit")
     _G.unit = ControlUnit()
+    unit.getOutPlugs = function()
+        return {}
+    end
 
     _G.construct = ConstructMock.Instance()
 
