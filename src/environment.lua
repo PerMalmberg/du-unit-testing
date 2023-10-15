@@ -56,6 +56,10 @@ TestEnvironment.Prepare = function()
     library.getCoreUnit = function()
         return CoreMock.Instance()
     end
+
+    _G.player = {
+
+    }
 end
 
 return TestEnvironment
