@@ -24,6 +24,10 @@ function ConstructMock.Instance()
 
     local s = {}
 
+    function s.getTotalMass()
+        return 1000
+    end
+
     function s.getWorldPosition()
         return constructVars.worldPosition
     end
